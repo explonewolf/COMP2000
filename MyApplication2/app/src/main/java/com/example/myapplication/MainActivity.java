@@ -33,14 +33,25 @@ public class MainActivity extends AppCompatActivity {
         // Check if the entered credentials are correct
         if (email.equals(correctEmail) && password.equals(correctPassword)) {
             showToast("Login Successful");
-            // Add any additional logic for a successful login
+            Intent intent = new Intent(this, SecondActivity.class);
+            startActivity(intent);
+            finish();
         } else {
             showToast("Invalid credentials. Try again.");
-            // Add any additional logic for a failed login
+
         }
     }
 
     private void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    public class SecondActivity extends AppCompatActivity {
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_second);
+            // Additional initialization or logic for the second activity
+        }
     }
 }
