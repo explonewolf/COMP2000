@@ -34,7 +34,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Login"
-        android:layout_below="@id/editTextTextPassword"/>
+        android:layout_below="@id/editTextTextPassword"
+        android:onClick="login"/>
+
 
     <!-- Add a new button for booking -->
     <Button

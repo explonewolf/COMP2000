@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="booking_message">Booking details:\nAdults: %1$s\nChildren: %2$s\nTime: %3$s\nDate: %4$s\nRestaurant: %5$s</string>
+
 </resources>

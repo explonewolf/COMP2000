@@ -13,6 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class BookingActivity extends AppCompatActivity {
 
+    public String numAdults;
+    public String numKids;
+    public String date ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +39,11 @@ public class BookingActivity extends AppCompatActivity {
                 if (numAdults + numKids <= 10) {
                     showToast("Booking successful for " + selectedDate + "\nAdults: " + numAdults + "\nKids: " + numKids);
 
-                    // Use BookingActivity.this to refer to the activity as the Context
+
                     Intent intent = new Intent(BookingActivity.this, TimeActivity.class);
+                    intent.putExtra("noAdults", numAdults);
+                    intent.putExtra("noChildren", numKids);
+                    intent.putExtra("date", selectedDate);
                     startActivity(intent);
                 } else {
                     showToast("Exceeded maximum limit of 10 attendees.");
@@ -49,7 +56,7 @@ public class BookingActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    private String getDateFromDatePicker(DatePicker datePicker) {
+    public String getDateFromDatePicker(DatePicker datePicker) {
         int day = datePicker.getDayOfMonth();
         int month = datePicker.getMonth() + 1;
         int year = datePicker.getYear();

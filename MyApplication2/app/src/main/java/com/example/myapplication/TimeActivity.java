@@ -9,9 +9,9 @@ import android.widget.Toast;
 import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 public class TimeActivity extends AppCompatActivity {
-
+public String minute;
+public String hour;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +19,7 @@ public class TimeActivity extends AppCompatActivity {
 
         final TimePicker timePicker = findViewById(R.id.timePicker);
         Button bookButton = findViewById(R.id.buttonBookTime);
+
 
         bookButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,12 +39,21 @@ public class TimeActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    private String getTimeFromTimePicker(TimePicker timePicker) {
-        // Note: In Android API 23 (Android 6.0) and later, TimePicker uses 24-hour format by default
-        // If you want to handle 12-hour format, you may need additional logic
+    public String getTimeFromTimePicker(TimePicker timePicker) {
+        Bundle extras = getIntent().getExtras();
+        int noAdults = extras.getInt("noAdults", 0);
+        int noChildren = extras.getInt("noChildren", 0);
+        String date = extras.getString("date", "");
         int hour = timePicker.getHour();
         int minute = timePicker.getMinute();
-
+        Intent intent = new Intent(TimeActivity.this, CheckActivity.class);
+        intent.putExtra("hour", hour);
+        intent.putExtra("minute", minute);
+        intent.putExtra("noAdults", noAdults);
+        intent.putExtra("noChildren", noChildren);
+        intent.putExtra("date", date);
+        startActivity(intent);
         return String.format("%02d:%02d", hour, minute);
+
     }
 }

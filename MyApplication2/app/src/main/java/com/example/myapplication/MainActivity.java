@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.BookingActivity;
 
 public class MainActivity extends AppCompatActivity {
-
+public int x =0;
     EditText emailAddressEditText;
     EditText passwordEditText;
 
@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         // Hardcoded credentials for demonstration purposes
         String correctEmail = "user123";
         String correctPassword = "password123";
+        x=1;
 
         // Check if the entered credentials are correct
         if (email.equals(correctEmail) && password.equals(correctPassword)) {
@@ -66,8 +67,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean isLoggedIn() {
-        // Check if the user is logged in (modify this based on your actual login mechanism)
-        return true;  // For demonstration purposes, always return true
+        if (x==1)
+                {
+        return true;
+                }
+        return false;
     }
 
     private void showToast(String message) {
