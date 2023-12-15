@@ -6,7 +6,7 @@
     android:padding="16dp"
     tools:context=".BookingActivity">
 
-    <!-- Date selection (You can use DatePicker or any other date picker library) -->
+    <!-- Date selection  -->
     <EditText
         android:id="@+id/editTextAdults"
         android:layout_width="match_parent"

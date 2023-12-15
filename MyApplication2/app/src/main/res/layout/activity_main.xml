@@ -7,7 +7,7 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
-    <!-- Your existing layout components -->
+
 
     <EditText
         android:id="@+id/editTextTextEmailAddress"
@@ -38,12 +38,12 @@
         android:onClick="login"/>
 
 
-    <!-- Add a new button for booking -->
+    <!-- {"id":448,"customerName":"john","customerPhoneNumber":"01202757508","meal":"dinner","seatingArea":"Outside","tableSize":6,"date":"2024-12-12"}, -->
     <Button
-        android:id="@+id/buttonBook"
+        android:id="@+id/buttonSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Book Now"
+        android:text="sign-up"
         android:layout_below="@id/buttonLogin"
         android:layout_marginTop="16dp"/>
 </RelativeLayout>

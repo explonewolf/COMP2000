@@ -1,26 +1,42 @@
-<!-- activity_time_selection.xml -->
+<!-- time_layout.xml -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".TimeActivity">
 
-    <!-- Time selection -->
     <TimePicker
         android:id="@+id/timePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp" />
 
-    <!-- Booking button -->
+    <CheckBox
+        android:id="@+id/checkBoxInside"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Inside"
+        android:layout_below="@id/timePicker"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"/>
+
+    <CheckBox
+        android:id="@+id/checkBoxOutside"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Outside"
+        android:layout_below="@id/checkBoxInside"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"/>
+
     <Button
         android:id="@+id/buttonBookTime"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Book Time"
-        android:layout_below="@id/timePicker"
-        android:layout_marginTop="16dp" />
-
+        android:text="Book Now"
+        android:layout_below="@id/checkBoxOutside"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>

@@ -1,5 +1,8 @@
-package com.example.myapplication;// MainActivity.java
+// MainActivity.java
+package com.example.myapplication;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,10 +11,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myapplication.BookingActivity;
-
 public class MainActivity extends AppCompatActivity {
-public int x =0;
+
     EditText emailAddressEditText;
     EditText passwordEditText;
 
@@ -25,32 +26,34 @@ public int x =0;
         passwordEditText = findViewById(R.id.editTextTextPassword);
 
         // Add a click listener to the "Book Now" button
-        Button bookButton = findViewById(R.id.buttonBook);
-        bookButton.setOnClickListener(new View.OnClickListener() {
+        Button signUpButton = findViewById(R.id.buttonSignUp);
+        signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Check if the user is logged in
-                if (isLoggedIn()) {
-                    // Start the BookingActivity if logged in
-                    startBookingActivity();
-                } else {
-                    showToast("Please login first.");
-                }
+                startSignupActivity();
+            }
+        });
+
+        // Add a click listener to the "Login" button
+        Button loginButton = findViewById(R.id.buttonLogin);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                login();
             }
         });
     }
 
-    public void login(View view) {
+    private void login() {
         String email = emailAddressEditText.getText().toString();
         String password = passwordEditText.getText().toString();
 
-        // Hardcoded credentials for demonstration purposes
-        String correctEmail = "user123";
-        String correctPassword = "password123";
-        x=1;
+        // Retrieve stored user credentials from SharedPreferences
+        String storedEmail = getUserEmailFromSharedPreferences();
+        String storedPassword = getUserPasswordFromSharedPreferences();
 
-        // Check if the entered credentials are correct
-        if (email.equals(correctEmail) && password.equals(correctPassword)) {
+        // Check if the entered credentials match the stored credentials
+        if (email.equals(storedEmail) && password.equals(storedPassword)) {
             showToast("Login Successful");
 
             // Start the BookingActivity after a successful login
@@ -61,17 +64,24 @@ public int x =0;
         }
     }
 
+    private String getUserEmailFromSharedPreferences() {
+        SharedPreferences preferences = getSharedPreferences("user_info", MODE_PRIVATE);
+        return preferences.getString("username", "");
+    }
+
+    private String getUserPasswordFromSharedPreferences() {
+        SharedPreferences preferences = getSharedPreferences("user_info", MODE_PRIVATE);
+        return preferences.getString("password", "");
+    }
+
     private void startBookingActivity() {
         Intent intent = new Intent(this, BookingActivity.class);
         startActivity(intent);
     }
 
-    private boolean isLoggedIn() {
-        if (x==1)
-                {
-        return true;
-                }
-        return false;
+    private void startSignupActivity() {
+        Intent intent = new Intent(this, SignupActivity.class);
+        startActivity(intent);
     }
 
     private void showToast(String message) {
